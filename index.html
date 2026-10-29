@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ostrov Maldives | Finance Manager</title>
+<style>
+:root{--navy:#123b4a;--teal:#176b70;--sand:#f4f0e7;--ink:#1e293b;--muted:#64748b;--line:#dbe3e8;--white:#fff;--green:#137547;--red:#b42318;--gold:#d9a441}
+*{box-sizing:border-box}body{margin:0;background:#f5f7f8;color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+header{background:linear-gradient(120deg,var(--navy),var(--teal));color:white;padding:22px 20px}
+.head{max-width:1180px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}
+.brand{font-size:22px;font-weight:800;letter-spacing:.2px}.sub{font-size:13px;opacity:.85;margin-top:4px}
+.rate{font-size:13px;background:#ffffff1c;border:1px solid #ffffff44;border-radius:12px;padding:10px 12px}
+nav{max-width:1180px;margin:18px auto 0;padding:0 20px;display:flex;gap:8px;flex-wrap:wrap}
+nav button{border:1px solid #ffffff45;background:#ffffff14;color:#fff;padding:10px 13px;border-radius:9px;font-weight:650;cursor:pointer}
+nav button.active,nav button:hover{background:#fff;color:var(--navy)}
+main{max-width:1180px;margin:22px auto;padding:0 20px 40px}
+.notice{background:#fff7e6;border:1px solid #f3d69b;padding:12px 14px;border-radius:12px;color:#704c12;font-size:13px;line-height:1.5;margin-bottom:18px}
+.page{display:none}.page.active{display:block}
+h1{font-size:25px;margin:0 0 5px}.desc{color:var(--muted);margin:0 0 20px;font-size:14px}
+.cards{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-bottom:18px}
+.card,.panel{background:white;border:1px solid var(--line);border-radius:15px;padding:17px;box-shadow:0 2px 7px #123b4a08}
+.card .label{color:var(--muted);font-size:13px}.card .value{font-size:24px;font-weight:800;margin-top:8px;color:var(--navy)}.card .small{font-size:12px;color:var(--muted);margin-top:5px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.panel h2{font-size:17px;margin:0 0 14px}
+.actions{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}
+button,.button{font:inherit;cursor:pointer}.primary{background:var(--teal);border:0;color:white;padding:11px 14px;border-radius:9px;font-weight:700}.secondary{background:#fff;border:1px solid var(--line);color:var(--navy);padding:10px 13px;border-radius:9px;font-weight:650}.danger{background:#fff;border:1px solid #f1c6c3;color:var(--red);padding:9px 12px;border-radius:8px}
+form{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+label{display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:650;color:#334155}
+input,select,textarea{width:100%;padding:10px 11px;border:1px solid #cbd5e1;border-radius:8px;font:inherit;background:#fff;color:var(--ink);min-width:0}
+textarea{min-height:75px;resize:vertical}.full{grid-column:1/-1}
+.formfoot{display:flex;gap:8px;flex-wrap:wrap;grid-column:1/-1}
+table{width:100%;border-collapse:collapse;font-size:13px}th,td{padding:10px 8px;border-bottom:1px solid #e8edf0;text-align:left;vertical-align:top}th{font-size:11px;text-transform:uppercase;letter-spacing:.04em;color:#64748b;background:#f8fafb}td.num,th.num{text-align:right;white-space:nowrap}.tablewrap{overflow:auto;border:1px solid var(--line);border-radius:10px}
+.empty{padding:22px;text-align:center;color:var(--muted);font-size:13px}
+.pill{display:inline-block;border-radius:20px;padding:4px 8px;background:#e7f5ee;color:var(--green);font-size:11px;font-weight:700}.pill.pending{background:#fff2d6;color:#805a12}
+.menuitems{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.menuitem{border:1px solid var(--line);border-radius:12px;background:#fff;padding:12px;text-align:left}
+.menuitem strong{display:block;font-size:14px}.menuitem span{display:block;color:var(--teal);font-weight:800;margin-top:6px}
+.muted{color:var(--muted);font-size:12px}.summaryline{display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px solid #edf1f3;font-size:14px}
+footer{text-align:center;color:var(--muted);font-size:12px;padding:10px 20px 28px}
+@media(max-width:850px){.cards{grid-template-columns:repeat(2,minmax(0,1fr))}.grid2{grid-template-columns:1fr}.menuitems{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:520px){main{padding:0 12px 28px}header{padding:18px 14px}nav{padding:0 12px}.cards{gap:8px}.card{padding:13px}.card .value{font-size:20px}form{grid-template-columns:1fr}.full,.formfoot{grid-column:1}.menuitems{grid-template-columns:repeat(2,minmax(0,1fr))}h1{font-size:22px}}
+</style>
+</head>
+<body>
+<header>
+  <div class="head">
+    <div><div class="brand">🏝️ OSTROV MALDIVES</div><div class="sub">Finance Manager · First prototype</div></div>
+    <div class="rate">Reporting currency: USD<br><strong>1 USD = <span id="rateLabel">15.42</span> MVR</strong></div>
+  </div>
+  <nav>
+    <button class="active" data-page="dashboard">Dashboard</button>
+    <button data-page="income">Add Income</button>
+    <button data-page="expenses">Add Expense</button>
+    <button data-page="pos">Restaurant POS</button>
+    <button data-page="excursions">Excursions</button>
+    <button data-page="records">Transactions</button>
+    <button data-page="reports">Reports & Settings</button>
+  </nav>
+</header>
+<main>
+<div class="notice"><strong>Prototype note:</strong> this first version saves records in the browser on this device. It does not yet sync between your iPhone and the owner's computer. Do not enter sensitive guest/payment-card details. We'll need secure hosting and a shared database before using it as the official business record.</div>
+
+<section id="dashboard" class="page active">
+  <h1>Daily dashboard</h1><p class="desc">A quick view of recorded income and expenses for the selected date.</p>
+  <div class="panel" style="margin-bottom:15px"><label style="max-width:250px">Report date<input id="dashDate" type="date"></label></div>
+  <div class="cards">
+    <div class="card"><div class="label">Income received today</div><div class="value" id="dIncome">$0.00</div><div class="small">Only marked as received</div></div>
+    <div class="card"><div class="label">Expenses today</div><div class="value" id="dExpense">$0.00</div><div class="small">Payments recorded</div></div>
+    <div class="card"><div class="label">Net cash movement</div><div class="value" id="dNet">$0.00</div><div class="small">Income received minus expenses</div></div>
+    <div class="card"><div class="label">Platform money pending</div><div class="value" id="dPending">$0.00</div><div class="small">Recorded, not yet received</div></div>
+  </div>
+  <div class="grid2">
+    <div class="panel"><h2>Income by category</h2><div id="categorySummary"></div></div>
+    <div class="panel"><h2>Quick actions</h2><p class="muted">Record transactions as they happen, then check the actual cash/bank balances against your records.</p><div class="actions"><button class="primary" onclick="showPage('income')">＋ Add income</button><button class="primary" onclick="showPage('expenses')">＋ Add expense</button><button class="secondary" onclick="showPage('pos')">Open restaurant POS</button></div><div class="summaryline"><span>This month income</span><strong id="mIncome">$0.00</strong></div><div class="summaryline"><span>This month expenses</span><strong id="mExpense">$0.00</strong></div><div class="summaryline"><span>This month net</span><strong id="mNet">$0.00</strong></div></div>
+  </div>
+</section>
+
+<section id="income" class="page">
+  <h1>Add income</h1><p class="desc">Record each payment or sale. Choose the original currency; the system converts it to USD for reports.</p>
+  <div class="panel"><form id="incomeForm">
+    <label>Date<input name="date" type="date" required></label>
+    <label>Category<select name="category" required><option>Room Revenue</option><option>Restaurant/Cafe</option><option>Excursions</option><option>Equipment Rental</option><option>Transfers</option><option>Other</option></select></label>
+    <label>Description / reference<input name="description" placeholder="e.g. Room 3, breakfast, receipt number" required></label>
+    <label>Amount<input name="amount" type="number" min="0.01" step="0.01" required></label>
+    <label>Currency<select name="currency"><option>USD</option><option>MVR</option></select></label>
+    <label>Payment method<select name="method"><option>Cash</option><option>Bank Transfer</option><option>Card</option><option>Booking.com</option><option>Agoda</option><option>Other Platform</option><option>Other</option></select></label>
+    <label>Settlement status<select name="status"><option>Received</option><option>Pending from Platform</option><option>Partially Settled</option><option>Cancelled/Refunded</option></select></label>
+    <label>Received by / platform<input name="source" placeholder="e.g. Guest, Booking.com"></label>
+    <label class="full">Notes<textarea name="notes" placeholder="Optional notes"></textarea></label>
+    <div class="formfoot"><button class="primary" type="submit">Save income</button><button class="secondary" type="reset">Clear form</button></div>
+  </form></div>
+</section>
+
+<section id="expenses" class="page">
+  <h1>Add expense</h1><p class="desc">Record every business payment and select how it was paid.</p>
+  <div class="panel"><form id="expenseForm">
+    <label>Date<input name="date" type="date" required></label>
+    <label>Category<select name="category" required><option>Food & Beverage</option><option>Salaries</option><option>Housekeeping</option><option>Guest Supplies</option><option>Excursions</option><option>Transportation</option><option>Utilities</option><option>Marketing</option><option>Booking Commission</option><option>Repairs & Maintenance</option><option>Rent</option><option>Other</option></select></label>
+    <label>Description / supplier<input name="description" placeholder="e.g. fish supplier, electricity bill" required></label>
+    <label>Amount<input name="amount" type="number" min="0.01" step="0.01" required></label>
+    <label>Currency<select name="currency"><option>USD</option><option>MVR</option></select></label>
+    <label>Payment method<select name="method"><option>Cash</option><option>Bank Transfer</option><option>Card</option><option>Mobile Payment</option><option>Other</option></select></label>
+    <label>Reference / receipt no.<input name="reference" placeholder="Optional"></label>
+    <label>Approved by<input name="approvedBy" placeholder="Optional"></label>
+    <label class="full">Notes<textarea name="notes" placeholder="Optional notes"></textarea></label>
+    <div class="formfoot"><button class="primary" type="submit">Save expense</button><button class="secondary" type="reset">Clear form</button></div>
+  </form></div>
+</section>
+
+<section id="excursions" class="page">
+  <h1>Excursions & activities</h1><p class="desc">Record each excursion booking or sale separately. Saved sales are included in income, dashboard totals, transactions, and monthly reports.</p>
+  <div class="panel"><form id="excursionForm">
+    <label>Date<input name="date" type="date" required></label>
+    <label>Excursion / activity<select name="activity" required><option>Whale Shark Experience</option><option>Manta Ray Snorkeling</option><option>Snorkeling Trip</option><option>Dolphin Cruise</option><option>Sunset Cruise</option><option>Sandbank Trip</option><option>Fishing Trip</option><option>Island Hopping</option><option>Water Sports</option><option>Other Excursion</option></select></label>
+    <label>Guest name / room<input name="guest" placeholder="e.g. Room 4 or booking reference"></label>
+    <label>Number of guests<input name="guests" type="number" min="1" step="1" value="1" required></label>
+    <label>Total sale amount<input name="amount" type="number" min="0.01" step="0.01" required></label>
+    <label>Currency<select name="currency"><option>USD</option><option>MVR</option></select></label>
+    <label>Payment method<select name="method"><option>Cash</option><option>Bank Transfer</option><option>Card</option><option>Booking.com</option><option>Agoda</option><option>Other Platform</option><option>Other</option></select></label>
+    <label>Payment status<select name="status"><option>Received</option><option>Pending from Platform</option><option>Partially Settled</option><option>Cancelled/Refunded</option></select></label>
+    <label>Booked / received by<input name="source" placeholder="e.g. Reception, guest, platform"></label>
+    <label class="full">Notes<textarea name="notes" placeholder="Optional: supplier, boat, trip time, or booking notes"></textarea></label>
+    <div class="formfoot"><button class="primary" type="submit">Save excursion sale</button><button class="secondary" type="reset">Clear form</button></div>
+  </form></div>
+  <div class="panel" style="margin-top:16px"><h2>Excursion income overview</h2><div id="excursionSummary"></div></div>
+</section>
+
+<section id="pos" class="page">
+  <h1>Restaurant POS</h1><p class="desc">Tap menu items to build a sale. Edit the sample menu and prices in Settings before using this for real sales.</p>
+  <div class="grid2">
+    <div class="panel"><h2>Menu items (sample prices)</h2><div id="menuItems" class="menuitems"></div></div>
+    <div class="panel"><h2>Current sale</h2><div id="cartList"><div class="empty">Tap a menu item to add it to this sale.</div></div><div class="summaryline"><span>Sale total</span><strong id="cartTotal">$0.00</strong></div><form id="posForm" style="margin-top:14px"><label>Currency<select name="currency"><option>USD</option><option>MVR</option></select></label><label>Payment method<select name="method"><option>Cash</option><option>Bank Transfer</option><option>Card</option><option>Other</option></select></label><label class="full">Order reference / table<input name="description" placeholder="e.g. Table 2 or receipt no."></label><div class="formfoot"><button class="primary" type="submit">Save sale</button><button class="secondary" type="button" onclick="clearCart()">Clear sale</button></div></form></div>
+  </div>
+</section>
+
+<section id="records" class="page">
+  <h1>Transactions</h1><p class="desc">Review recorded income and expenses. Use the CSV buttons to export records.</p>
+  <div class="actions"><button class="secondary" onclick="exportCSV('income')">Export income CSV</button><button class="secondary" onclick="exportCSV('expenses')">Export expenses CSV</button><button class="secondary" onclick="exportCSV('all')">Export all transactions (Excel-compatible CSV)</button><button class="primary" onclick="printMonthlyReport()">Print / Save PDF report</button></div>
+  <div class="panel" style="margin-bottom:16px"><label style="max-width:280px">Filter by date<input id="recordDate" type="date"></label></div>
+  <div class="panel"><h2>Income</h2><div id="incomeTable" class="tablewrap"></div></div>
+  <div class="panel" style="margin-top:16px"><h2>Expenses</h2><div id="expenseTable" class="tablewrap"></div></div>
+</section>
+
+<section id="reports" class="page">
+  <h1>Reports & settings</h1><p class="desc">Configure the exchange rate, export data, and review this month's totals.</p>
+  <div class="grid2">
+    <div class="panel"><h2>Property & currency settings</h2><form id="settingsForm"><label>Total rooms<input name="rooms" type="number" min="1" step="1" value="20" required></label><label>MVR per USD rate<input name="rate" type="number" min="0.01" step="0.01" value="15.42" required></label><label>Reporting currency<select disabled><option>USD equivalent</option></select></label><div class="formfoot"><button class="primary" type="submit">Save settings</button></div></form><p class="muted">Set the total number of rooms at your property. You can enter 20 or any higher number; it is not capped at 20.</p><p class="muted">Current default is 1 USD = 15.42 MVR. If the rate changes, update it here. Historical transactions will use the new rate in this prototype; for official historical records, the rate should be stored per transaction.</p></div>
+    <div class="panel"><h2>Data & backup</h2><p class="muted">Export your records regularly and store the backup securely. This prototype keeps data only in this browser on this device.</p><div class="actions"><button class="primary" onclick="exportCSV('all')">Download transactions for Excel</button><button class="secondary" onclick="printMonthlyReport()">Print / Save PDF report</button><button class="secondary" onclick="backupJSON()">Download backup file</button><label class="secondary" style="display:inline-flex;cursor:pointer">Restore backup<input type="file" id="restoreFile" accept=".json,application/json" style="display:none"></label></div><p class="muted">Do not clear browser data unless you have a backup. The restore action replaces the records currently stored on this device.</p></div>
+  </div>
+  <div class="panel" style="margin-top:16px"><h2>Monthly summary</h2><label style="max-width:260px">Month<input type="month" id="reportMonth"></label><div id="monthlyReport" style="margin-top:14px"></div></div>
+  <div class="panel" style="margin-top:16px"><h2>Restaurant menu setup</h2><p class="muted">Edit these sample menu items and prices. This version uses a simple text list, one item per line: Item name | price in USD.</p><form id="menuForm"><label class="full">Menu items<textarea name="items" id="menuText" style="min-height:180px"></textarea></label><div class="formfoot"><button class="primary" type="submit">Save menu</button><button class="secondary" type="button" onclick="resetMenu()">Restore sample menu</button></div></form></div>
+</section>
+</main>
+<footer>Ostrov Maldives Finance Manager · Prototype · Keep regular backups</footer>
+<script>
+const $ = s => document.querySelector(s);
+const today = new Date(); const isoToday = new Date(today.getTime()-today.getTimezoneOffset()*60000).toISOString().slice(0,10);
+const monthNow = isoToday.slice(0,7);
+let data = loadData();
+let cart = {};
+const sampleMenu = [
+["Chicken sandwich",6],["Tuna sandwich",5],["Chicken 65",8],["Mongolian rice",7],["Butter garlic rice",6],["Tomato soup",4],["Seafood platter",18],["Tuna kabab",7],["Chicken kabab",7],["Cheese salad",5],["Cashewnut salad",6],["Tuna garlic butter",9]
+];
+function freshData(){return {rate:15.42,rooms:20,income:[],expenses:[],menu:sampleMenu};}
+function loadData(){try{return Object.assign(freshData(),JSON.parse(localStorage.getItem("ostrovFinanceV1")||"{}"));}catch(e){return freshData();}}
+function saveData(){localStorage.setItem("ostrovFinanceV1",JSON.stringify(data));renderAll();}
+function usd(amount,currency){const n=Number(amount)||0;return currency==="MVR"?n/(Number(data.rate)||15.42):n;}
+function money(n){return new Intl.NumberFormat("en-US",{style:"currency",currency:"USD"}).format(Number(n)||0);}
+function escapeHtml(s){return String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
+function showPage(id){document.querySelectorAll(".page").forEach(x=>x.classList.toggle("active",x.id===id));document.querySelectorAll("nav button").forEach(x=>x.classList.toggle("active",x.dataset.page===id));if(id==="pos")renderMenu();if(id==="excursions")renderExcursions();if(id==="records")renderTables();if(id==="reports")renderReports();window.scrollTo({top:0,behavior:"smooth"});}
+document.querySelectorAll("nav button").forEach(b=>b.addEventListener("click",()=>showPage(b.dataset.page)));
+function sum(list,filter=()=>true){return list.filter(filter).reduce((a,x)=>a+usd(x.amount,x.currency),0);}
+function isReceived(x){return x.status==="Received";}
+function renderDashboard(){
+ const date=$("#dashDate").value||isoToday, month=date.slice(0,7);
+ const inc=data.income.filter(x=>x.date===date&&isReceived(x)), exp=data.expenses.filter(x=>x.date===date);
+ const pending=data.income.filter(x=>x.date===date&&["Pending from Platform","Partially Settled"].includes(x.status));
+ $("#dIncome").textContent=money(sum(inc));$("#dExpense").textContent=money(sum(exp));$("#dNet").textContent=money(sum(inc)-sum(exp));$("#dPending").textContent=money(sum(pending));
+ const mi=data.income.filter(x=>x.date?.startsWith(month)&&isReceived(x)), me=data.expenses.filter(x=>x.date?.startsWith(month));
+ $("#mIncome").textContent=money(sum(mi));$("#mExpense").textContent=money(sum(me));$("#mNet").textContent=money(sum(mi)-sum(me));
+ const cats={};inc.forEach(x=>cats[x.category]=(cats[x.category]||0)+usd(x.amount,x.currency));
+ $("#categorySummary").innerHTML=Object.keys(cats).length?Object.entries(cats).map(([k,v])=>`<div class="summaryline"><span>${escapeHtml(k)}</span><strong>${money(v)}</strong></div>`).join(""):'<div class="empty">No income recorded for this date yet.</div>';
+}
+function renderMenu(){
+ $("#menuItems").innerHTML=data.menu.map((x,i)=>`<button class="menuitem" onclick="addCart(${i})"><strong>${escapeHtml(x[0])}</strong><span>${money(x[1])}</span><small class="muted">Tap to add</small></button>`).join("");
+ renderCart();
+}
+function addCart(i){cart[i]=(cart[i]||0)+1;renderCart();}
+function changeCart(i,delta){cart[i]=(cart[i]||0)+delta;if(cart[i]<=0)delete cart[i];renderCart();}
+function clearCart(){cart={};renderCart();}
+function renderCart(){
+ const keys=Object.keys(cart);$("#cartList").innerHTML=keys.length?keys.map(k=>`<div class="summaryline"><span>${escapeHtml(data.menu[k][0])} × ${cart[k]}<br><small><button type="button" class="secondary" onclick="changeCart(${k},-1)">−</button> <button type="button" class="secondary" onclick="changeCart(${k},1)">+</button></small></span><strong>${money(data.menu[k][1]*cart[k])}</strong></div>`).join(""):'<div class="empty">Tap a menu item to add it to this sale.</div>';
+ $("#cartTotal").textContent=money(keys.reduce((a,k)=>a+data.menu[k][1]*cart[k],0));
+}
+function renderExcursions(){
+ const rows=data.income.filter(x=>x.category==="Excursions").slice().reverse();
+ const total=sum(rows.filter(isReceived));
+ const pending=sum(rows.filter(x=>["Pending from Platform","Partially Settled"].includes(x.status)));
+ const guestCount=rows.reduce((n,x)=>n+(Number(x.guests)||0),0);
+ $("#excursionSummary").innerHTML=`<div class="cards"><div class="card"><div class="label">Received excursion income</div><div class="value">${money(total)}</div></div><div class="card"><div class="label">Pending platform payments</div><div class="value">${money(pending)}</div></div><div class="card"><div class="label">Bookings recorded</div><div class="value">${rows.length}</div></div><div class="card"><div class="label">Guests recorded</div><div class="value">${guestCount}</div></div></div>`+(rows.length?`<div class="tablewrap"><table><thead><tr><th>Date</th><th>Excursion</th><th>Guest / room</th><th>Guests</th><th>Status</th><th class="num">Original</th><th class="num">USD eq.</th></tr></thead><tbody>${rows.map(x=>`<tr><td>${escapeHtml(x.date)}</td><td>${escapeHtml(x.activity||x.description)}</td><td>${escapeHtml(x.guest||x.source||"")}</td><td>${Number(x.guests)||1}</td><td>${escapeHtml(x.status||"")}</td><td class="num">${escapeHtml(x.currency)} ${Number(x.amount).toFixed(2)}</td><td class="num">${money(usd(x.amount,x.currency))}</td></tr>`).join("")}</tbody></table></div>`:'<div class="empty">No excursion sales recorded yet.</div>');
+}
+function renderTables(){
+ const f=$("#recordDate").value;
+ const inc=data.income.filter(x=>!f||x.date===f).slice().reverse();
+ const exp=data.expenses.filter(x=>!f||x.date===f).slice().reverse();
+ $("#incomeTable").innerHTML=inc.length?`<table><thead><tr><th>Date</th><th>Category / description</th><th>Payment</th><th>Status</th><th class="num">Original</th><th class="num">USD eq.</th><th></th></tr></thead><tbody>${inc.map(x=>`<tr><td>${escapeHtml(x.date)}</td><td><strong>${escapeHtml(x.category)}</strong><br>${escapeHtml(x.description)}<br><span class="muted">${escapeHtml(x.source||"")}</span></td><td>${escapeHtml(x.method)}</td><td><span class="pill ${x.status==="Received"?"":"pending"}">${escapeHtml(x.status)}</span></td><td class="num">${escapeHtml(x.currency)} ${Number(x.amount).toFixed(2)}</td><td class="num">${money(usd(x.amount,x.currency))}</td><td><button class="danger" onclick="deleteRecord('income','${x.id}')">Delete</button></td></tr>`).join("")}</tbody></table>`:'<div class="empty">No income records found.</div>';
+ $("#expenseTable").innerHTML=exp.length?`<table><thead><tr><th>Date</th><th>Category / description</th><th>Payment</th><th class="num">Original</th><th class="num">USD eq.</th><th></th></tr></thead><tbody>${exp.map(x=>`<tr><td>${escapeHtml(x.date)}</td><td><strong>${escapeHtml(x.category)}</strong><br>${escapeHtml(x.description)}</td><td>${escapeHtml(x.method)}</td><td class="num">${escapeHtml(x.currency)} ${Number(x.amount).toFixed(2)}</td><td class="num">${money(usd(x.amount,x.currency))}</td><td><button class="danger" onclick="deleteRecord('expenses','${x.id}')">Delete</button></td></tr>`).join("")}</tbody></table>`:'<div class="empty">No expense records found.</div>';
+}
+function deleteRecord(kind,id){if(confirm("Delete this transaction? This cannot be undone unless you have a backup.")){data[kind]=data[kind].filter(x=>x.id!==id);saveData();renderTables();}}
+function renderReports(){
+ $("#rateLabel").textContent=Number(data.rate).toFixed(2);$("#settingsForm").elements.rate.value=data.rate;$("#settingsForm").elements.rooms.value=Number(data.rooms)||20;
+ $("#menuText").value=data.menu.map(x=>`${x[0]} | ${x[1]}`).join("\n");
+ if(!$("#reportMonth").value)$("#reportMonth").value=monthNow;
+ const m=$("#reportMonth").value||monthNow, inc=data.income.filter(x=>x.date?.startsWith(m)), exp=data.expenses.filter(x=>x.date?.startsWith(m));
+ const incReceived=inc.filter(isReceived), pending=inc.filter(x=>["Pending from Platform","Partially Settled"].includes(x.status));
+ const byCat={};incReceived.forEach(x=>byCat[x.category]=(byCat[x.category]||0)+usd(x.amount,x.currency));
+ const byExp={};exp.forEach(x=>byExp[x.category]=(byExp[x.category]||0)+usd(x.amount,x.currency));
+ $("#monthlyReport").innerHTML=`<div class="cards"><div class="card"><div class="label">Income received</div><div class="value">${money(sum(incReceived))}</div></div><div class="card"><div class="label">Expenses</div><div class="value">${money(sum(exp))}</div></div><div class="card"><div class="label">Net result (cash basis)</div><div class="value">${money(sum(incReceived)-sum(exp))}</div></div><div class="card"><div class="label">Platform pending</div><div class="value">${money(sum(pending))}</div></div></div><div class="grid2"><div><h3>Income by category</h3>${Object.keys(byCat).length?Object.entries(byCat).map(([k,v])=>`<div class="summaryline"><span>${escapeHtml(k)}</span><strong>${money(v)}</strong></div>`).join(""):'<p class="muted">No received income this month.</p>'}</div><div><h3>Expenses by category</h3>${Object.keys(byExp).length?Object.entries(byExp).map(([k,v])=>`<div class="summaryline"><span>${escapeHtml(k)}</span><strong>${money(v)}</strong></div>`).join(""):'<p class="muted">No expenses this month.</p>'}</div></div>`;
+}
+function renderAll(){ $("#rateLabel").textContent=Number(data.rate).toFixed(2);renderDashboard();renderTables();renderReports();renderMenu();if($("#excursionSummary"))renderExcursions(); }
+function formObj(form){return Object.fromEntries(new FormData(form).entries());}
+$("#incomeForm").addEventListener("submit",e=>{e.preventDefault();const x=formObj(e.target);x.id=crypto.randomUUID?crypto.randomUUID():String(Date.now());x.amount=Number(x.amount);data.income.push(x);saveData();e.target.reset();e.target.elements.date.value=isoToday;alert("Income saved.");showPage("dashboard");});
+$("#expenseForm").addEventListener("submit",e=>{e.preventDefault();const x=formObj(e.target);x.id=crypto.randomUUID?crypto.randomUUID():String(Date.now());x.amount=Number(x.amount);data.expenses.push(x);saveData();e.target.reset();e.target.elements.date.value=isoToday;alert("Expense saved.");showPage("dashboard");});
+$("#excursionForm").addEventListener("submit",e=>{e.preventDefault();const x=formObj(e.target);x.id=crypto.randomUUID?crypto.randomUUID():String(Date.now());x.amount=Number(x.amount);x.category="Excursions";x.description=x.activity+(x.guest?" — "+x.guest:"")+" — "+x.guests+" guest(s)";data.income.push(x);saveData();e.target.reset();e.target.elements.date.value=isoToday;e.target.elements.guests.value="1";renderExcursions();alert("Excursion sale saved to income records.");showPage("excursions");});
+$("#posForm").addEventListener("submit",e=>{e.preventDefault();const keys=Object.keys(cart);if(!keys.length){alert("Add at least one menu item first.");return;}const x=formObj(e.target);const total=keys.reduce((a,k)=>a+data.menu[k][1]*cart[k],0);data.income.push({id:crypto.randomUUID?crypto.randomUUID():String(Date.now()),date:isoToday,category:"Restaurant/Cafe",description:(x.description?x.description+" — ":"")+"POS sale: "+keys.map(k=>data.menu[k][0]+" x"+cart[k]).join(", "),amount:total,currency:x.currency,method:x.method,status:"Received",source:"Restaurant POS",notes:"Saved from POS"});saveData();clearCart();alert("Restaurant sale saved.");showPage("dashboard");});
+$("#settingsForm").addEventListener("submit",e=>{e.preventDefault();const values=formObj(e.target),rate=Number(values.rate),rooms=Number(values.rooms);if(!(rate>0)){alert("Enter a valid exchange rate.");return;}if(!Number.isInteger(rooms)||rooms<1){alert("Enter a room count of at least 1.");return;}data.rate=rate;data.rooms=rooms;saveData();alert("Settings saved. Room capacity: "+rooms+" rooms.");});
+$("#menuForm").addEventListener("submit",e=>{e.preventDefault();const lines=$("#menuText").value.split(/\n/).map(s=>s.trim()).filter(Boolean);const menu=[];for(const line of lines){const parts=line.split("|");const name=(parts[0]||"").trim(),price=Number((parts[1]||"").trim());if(!name||!Number.isFinite(price)||price<0){alert("Each line must look like: Item name | price in USD");return;}menu.push([name,price]);}if(!menu.length){alert("Please add at least one menu item.");return;}data.menu=menu;saveData();alert("Menu saved.");});
+function resetMenu(){data.menu=sampleMenu.map(x=>[...x]);saveData();$("#menuText").value=data.menu.map(x=>`${x[0]} | ${x[1]}`).join("\n");}
+function csvCell(v){return '"'+String(v??"").replace(/"/g,'""')+'"';}
+function download(name,content,type="text/csv;charset=utf-8;"){const blob=new Blob([content],{type});const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download=name;a.click();URL.revokeObjectURL(a.href);}
+function exportCSV(kind){
+ let rows=[["Type","Date","Category","Description","Original Amount","Currency","USD Equivalent","Payment Method","Status","Source","Notes"]];
+ if(kind==="income"||kind==="all")data.income.forEach(x=>rows.push(["Income",x.date,x.category,x.description,x.amount,x.currency,usd(x.amount,x.currency).toFixed(2),x.method,x.status,x.source,x.notes]));
+ if(kind==="expenses"||kind==="all")data.expenses.forEach(x=>rows.push(["Expense",x.date,x.category,x.description,x.amount,x.currency,usd(x.amount,x.currency).toFixed(2),x.method,"",x.approvedBy,x.notes]));
+ download("ostrov_"+kind+"_"+isoToday+".csv",rows.map(r=>r.map(csvCell).join(",")).join("\r\n"));
+}
+function printMonthlyReport(){
+ const m=$("#reportMonth").value||monthNow;
+ const inc=data.income.filter(x=>x.date?.startsWith(m));
+ const exp=data.expenses.filter(x=>x.date?.startsWith(m));
+ const received=inc.filter(isReceived);
+ const pending=inc.filter(x=>["Pending from Platform","Partially Settled"].includes(x.status));
+ const row=(type,x)=>`<tr><td>${escapeHtml(type)}</td><td>${escapeHtml(x.date)}</td><td>${escapeHtml(x.category)}</td><td>${escapeHtml(x.description)}</td><td>${escapeHtml(x.currency)} ${Number(x.amount).toFixed(2)}</td><td>${money(usd(x.amount,x.currency))}</td><td>${escapeHtml(x.method||"")}</td><td>${escapeHtml(x.status||"")}</td></tr>`;
+ const w=window.open("","_blank");
+ if(!w){alert("Your browser blocked the report window. Allow pop-ups for this page, then try again.");return;}
+ w.document.write(`<!doctype html><html><head><meta charset="utf-8"><title>Ostrov Maldives Monthly Finance Report ${m}</title><style>body{font:12px Arial,sans-serif;color:#172b35;margin:28px}h1{color:#123b4a}p{color:#52636b}.cards{display:flex;gap:12px;margin:18px 0}.card{border:1px solid #ccd6da;padding:12px;flex:1}.label{font-size:11px;color:#52636b}.value{font-size:18px;font-weight:bold;margin-top:6px}table{border-collapse:collapse;width:100%;font-size:10px;margin-top:16px}th,td{border:1px solid #d5dde0;padding:6px;text-align:left}th{background:#edf3f4} .note{margin-top:22px;font-size:10px}@media print{button{display:none}body{margin:12mm}}</style></head><body><h1>OSTROV MALDIVES</h1><h2>Monthly Finance Report — ${m}</h2><p>Reporting currency: USD equivalent · Exchange rate used: 1 USD = ${Number(data.rate).toFixed(2)} MVR · Generated ${isoToday}</p><div class="cards"><div class="card"><div class="label">Income received</div><div class="value">${money(sum(received))}</div></div><div class="card"><div class="label">Expenses</div><div class="value">${money(sum(exp))}</div></div><div class="card"><div class="label">Net cash result</div><div class="value">${money(sum(received)-sum(exp))}</div></div><div class="card"><div class="label">Platform pending</div><div class="value">${money(sum(pending))}</div></div></div><h3>Transactions</h3><table><thead><tr><th>Type</th><th>Date</th><th>Category</th><th>Description</th><th>Original amount</th><th>USD equivalent</th><th>Payment</th><th>Status</th></tr></thead><tbody>${inc.map(x=>row("Income",x)).join("")}${exp.map(x=>row("Expense",x)).join("")}</tbody></table><p class="note">Generated from the Ostrov Finance Manager records saved in this browser. Please reconcile with bank, cash, and platform statements before treating as official accounts.</p><button onclick="window.print()">Print / Save as PDF</button><script>setTimeout(()=>window.print(),400)<\/script></body></html>`);
+ w.document.close();
+}
+function backupJSON(){download("ostrov_backup_"+isoToday+".json",JSON.stringify(data,null,2),"application/json");}
+$("#restoreFile").addEventListener("change",async e=>{const f=e.target.files[0];if(!f)return;try{const obj=JSON.parse(await f.text());if(!Array.isArray(obj.income)||!Array.isArray(obj.expenses)||!Array.isArray(obj.menu)||!obj.rate)throw new Error("Invalid backup format");if(confirm("Restore this backup? It will replace records on this device.")){data=obj;saveData();alert("Backup restored.");}}catch(err){alert("Could not restore that file. Please select a valid Ostrov backup.");}e.target.value="";});
+$("#dashDate").value=isoToday;$("#dashDate").addEventListener("change",renderDashboard);
+$("#recordDate").addEventListener("change",renderTables);
+$("#reportMonth").value=monthNow;$("#reportMonth").addEventListener("change",renderReports);
+document.querySelectorAll("#incomeForm input[type=date],#expenseForm input[type=date],#excursionForm input[type=date]").forEach(x=>x.value=isoToday);
+renderAll();
+</script>
+</body>
+</html>
